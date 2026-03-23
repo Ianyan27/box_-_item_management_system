@@ -47,6 +47,28 @@ class ItemManagementController extends Controller
             'name' => $request->name
         ]);
 
-        return back()->with('success', 'Box created successfully!');
+        return back()->with('success', 'Item created successfully!');
+    }
+
+    public function updateItem(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $box = Item::findOrFail($id);
+
+        $box->update([
+            'box_id' => $request->box_id,
+            'name' => $request->name
+        ]);
+
+        return back()->with('success', 'Box updated successfully!');
+    }
+
+    public function deleteItem($id){
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return back()->with('success', 'Item Deleted Successfully!');
     }
 }

@@ -28,10 +28,15 @@
                     <td>
                         <div class="actions">
                             <div class="edit-btn">
-                                <button data-id="{{ $item->id }}">Edit</button>
+                                <button 
+                                    onclick="openEditModal({{ $item->id }}, '{{ $item->name }}')">
+                                    Edit
+                                </button>
                             </div>
                             <div class="delete-btn">
-                                <button data-id="{{ $item->id }}">Delete</button>
+                                <button onclick="openDeleteModal({{ $item->id }})">
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </td>
@@ -72,6 +77,61 @@
             </form>
         </div>
     </div>
+
+    <div id="editBoxModal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Item</h3>
+
+            <form method="POST" id="editForm">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <select name="box_id" required>
+                        <option value="">Select Box</option>
+                        @foreach ($boxes as $box)
+                        <option value="{{ $box->id }}">{{ $box->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Item Name</label>
+                    <input type="text" name="name" id="editBoxName" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeEditModal()" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Delete Item</h3>
+
+            <p>Are you sure you want to delete this item?</p>
+
+            <form id="deleteForm" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeDeleteModal()" class="btn-cancel">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-save" style="background-color: #ef4444;">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script src="{{ asset('js/modal/deleteitem.js') }}"></script>
 
 @endsection

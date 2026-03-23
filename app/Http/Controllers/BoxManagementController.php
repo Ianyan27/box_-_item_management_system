@@ -45,4 +45,31 @@ class BoxManagementController extends Controller
 
         return back()->with('success', 'Box created successfully!');
     }
+
+    public function updateBox(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $box = Box::findOrFail($id);
+
+        $box->update([
+            'name' => $request->name
+        ]);
+
+        return back()->with('success', 'Box updated successfully!');
+    }
+
+    public function deleteBox($id){
+        $box = Box::findOrFail($id);
+
+        if ($box->items()->count() > 0) {
+            return back()->with('error', 'Cannot delete box with items inside!');
+        }
+
+        $box->delete();
+
+        return back()->with('success', 'Box deleted successfully!');
+    }
 }

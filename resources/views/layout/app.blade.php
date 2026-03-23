@@ -18,6 +18,35 @@
             <x-sidebar />
         </div>
         <div class="content-container">
+
+            <div id="toast-container"></div>
+
+            @if(session('success'))
+            <script>
+                window.addEventListener('DOMContentLoaded', () => {
+                    showToast("{{ session('success') }}", "success");
+                });
+            </script>
+            @endif
+
+            @if(session('error'))
+            <script>
+                window.addEventListener('DOMContentLoaded', () => {
+                    showToast("{{ session('error') }}", "error");
+                });
+            </script>
+            @endif
+
+            @if ($errors->any())
+            <script>
+                window.addEventListener('DOMContentLoaded', () => {
+                    @foreach ($errors->all() as $error)
+                        showToast("{{ $error }}", "error");
+                    @endforeach
+                });
+            </script>
+            @endif
+
             @yield('content')
         </div>
     </div>

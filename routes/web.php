@@ -38,13 +38,13 @@ Route::post('/items', [
     ItemManagementController::class, 'addItem'
 ])->name('items.store');
 
-Route::patch('/api/item/{id}', [
+Route::put('/items/{id}', [
     ItemManagementController::class, 'updateItem'
-]);
+])->name('items.update');
 
-Route::delete('/api/item/{id}', [
+Route::delete('/items/{id}', [
     ItemManagementController::class, 'deleteItem'
-]);
+])->name('items.delete');
 
 Route::get('/api/box/1', [
     DummyDataController::class, 'prepareDummyData'
@@ -63,10 +63,10 @@ Route::post('/boxes', [
     BoxManagementController::class, 'addBox'
 ])->name('boxes.store');
 
-Route::patch('/api/box/{id}', [
+Route::put('/boxes/{id}', [
     BoxManagementController::class, 'updateBox'
 ])->name('boxes.update');
 
-Route::delete('/api/box/{id}', [
+Route::delete('/boxes/{id}', [
     BoxManagementController::class, 'deleteBox'
-]);
+])->name('boxes.delete');

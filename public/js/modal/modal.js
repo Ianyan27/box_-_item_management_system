@@ -13,3 +13,18 @@ window.onclick = function(e) {
         modal.style.display = "none";
     }
 }
+
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+    toast.classList.add('toast', `toast-${type}`);
+    toast.innerText = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'fadeOut 0.4s forwards';
+        setTimeout(() => toast.remove(), 400);
+    }, 3000);
+}

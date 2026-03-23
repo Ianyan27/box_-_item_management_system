@@ -26,10 +26,15 @@
                     <td>
                         <div class="actions">
                             <div class="edit-btn">
-                                <button data-id="{{ $box->id }}">Edit</button>
+                                <button 
+                                    onclick="openEditModal({{ $box->id }}, '{{ $box->name }}')">
+                                    Edit
+                                </button>
                             </div>
                             <div class="delete-btn">
-                                <button data-id="{{ $box->id }}">Delete</button>
+                                <button onclick="openDeleteModal({{ $box->id }})">
+                                    Delete
+                                </button>
                             </div>
                         </div>
                     </td>
@@ -60,6 +65,51 @@
             </form>
         </div>
     </div>
+
+    <div id="editBoxModal" class="modal">
+        <div class="modal-content">
+            <h3>Edit Box</h3>
+
+            <form method="POST" id="editForm">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label>Box Name</label>
+                    <input type="text" name="name" id="editBoxName" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeEditModal()" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Delete Box</h3>
+
+            <p>Are you sure you want to delete this box?</p>
+
+            <form id="deleteForm" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeDeleteModal()" class="btn-cancel">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn-save" style="background-color: #ef4444;">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script src="{{ asset('js/modal/deletebox.js') }}"></script>
 
 @endsection
