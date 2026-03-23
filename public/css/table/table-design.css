@@ -29,7 +29,7 @@ th, td {
     text-align: left;
 }
 
-th:nth-child(4){
+.th-actions{
     text-align: center;
 }
 

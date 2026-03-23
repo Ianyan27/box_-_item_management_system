@@ -19,22 +19,24 @@ Route::get('/register', [
 ])->name('register');
 
 Route::post('/register', [
-    UserController::class, 'store'
+    UserController::class, 'registerUser'
 ])->name('register');
 
-Route::get('/item', [
-    ItemManagementController::class, 'index'
-])->name('item.dashboard');
+Route::post('/logout', [
+    UserController::class, 'logout'
+])->name('logout');
 
 Route::get('/api/item', [
     ItemManagementController::class, 'getItems'
 ]);
 
-//I need to pass an item for post request
+Route::get('/item', [
+    ItemManagementController::class, 'index'
+])->name('item.dashboard');
 
-Route::post('/api/box/{box_id}/item/{name}', [
+Route::post('/items', [
     ItemManagementController::class, 'addItem'
-]);
+])->name('items.store');
 
 Route::patch('/api/item/{id}', [
     ItemManagementController::class, 'updateItem'
@@ -48,17 +50,18 @@ Route::get('/api/box/1', [
     DummyDataController::class, 'prepareDummyData'
 ]);
 
-Route::get('/box', [
-    BoxManagementController::class, 'index'
-])->name('box.dashboard');
 
 Route::get('/api/box', [
     BoxManagementController::class, 'getBoxes'
 ]);
 
-Route::post('/api/box/{name}', [
+Route::get('/box', [
+    BoxManagementController::class, 'index'
+])->name('box.dashboard');
+
+Route::post('/boxes', [
     BoxManagementController::class, 'addBox'
-]);
+])->name('boxes.store');
 
 Route::patch('/api/box/{id}', [
     BoxManagementController::class, 'updateBox'

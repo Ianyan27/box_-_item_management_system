@@ -35,7 +35,7 @@ class UserController extends Controller
         return view('register');
     }
 
-    public function store(Request $request){
+    public function registerUser(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
@@ -51,5 +51,14 @@ class UserController extends Controller
         Auth::login($user);
 
         return redirect('/')->with('success', 'Account created successfully');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

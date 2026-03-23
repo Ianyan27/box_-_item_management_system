@@ -7,7 +7,7 @@
 
 body {
     height: 100vh;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    background: linear-gradient(135deg, #47448f, #1f2937);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +57,7 @@ body {
 }
 
 .form-input:focus {
-    border-color: #4f46e5;
+    border-color: #1f2937;
     outline: none;
     box-shadow: 0 0 0 3px rgba(79,70,229,0.2);
 }
@@ -65,7 +65,7 @@ body {
 .btn {
     width: 100%;
     padding: 12px;
-    background: #4f46e5;
+    background: #1f2937;
     color: white;
     border: none;
     border-radius: 8px;
@@ -75,7 +75,7 @@ body {
 }
 
 .btn:hover {
-    background: #4338ca;
+    background: rgb(84, 71, 224);
 }
 
 .footer {
@@ -85,7 +85,7 @@ body {
 }
 
 .footer a {
-    color: #4f46e5;
+    color: #1f2937;
     text-decoration: none;
     font-weight: 500;
 }

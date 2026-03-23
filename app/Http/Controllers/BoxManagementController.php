@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Box;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 
 class BoxManagementController extends Controller
 {
@@ -33,7 +34,15 @@ class BoxManagementController extends Controller
         return redirect()->back()->with('success', 'Box API Successfully Synced');
     }
 
-    public function addBox(){
-        return redirect()->back()->with('success', 'Box added successfully');
+    public function addBox(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        Box::create([
+            'name' => $request->name
+        ]);
+
+        return back()->with('success', 'Box created successfully!');
     }
 }

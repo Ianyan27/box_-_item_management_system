@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table/button.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/table/table-design.css') }}">
     <script src="https://kit.fontawesome.com/4d2a01d4ef.js" crossorigin="anonymous" defer></script>
 </head>
@@ -19,5 +21,6 @@
             @yield('content')
         </div>
     </div>
+    <script src="{{ asset('js/modal/modal.js') }}"></script>
 </body>
 </html>
