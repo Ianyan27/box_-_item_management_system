@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoxManagementController;
 use App\Http\Controllers\DummyDataController;
 use App\Http\Controllers\ItemManagementController;
@@ -25,6 +26,14 @@ Route::post('/register', [
 Route::post('/logout', [
     UserController::class, 'logout'
 ])->name('logout');
+
+Route::get('/auth/google', [
+    AuthController::class, 'redirectToGoogle'
+])->name('google.login');
+
+Route::get('/auth/google/callback', [
+    AuthController::class, 'handleGoogleCallback'
+]);
 
 Route::get('/api/item', [
     ItemManagementController::class, 'getItems'

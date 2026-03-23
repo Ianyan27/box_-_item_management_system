@@ -53,6 +53,12 @@
         </div>
 
         <button type="submit" class="btn">Login</button>
+        
+        <div style="margin-top: 15px;">
+            <a href="{{ route('google.login') }}" class="btn" style="background-color: #db4437;">
+                Continue with Google
+            </a>
+        </div>
     </form>
 
     <div class="footer">
