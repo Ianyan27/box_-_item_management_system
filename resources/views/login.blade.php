@@ -12,14 +12,12 @@
     <h1 class="title">Welcome back 👋</h1>
     <p class="subtitle">Login to your BoxVault account</p>
 
-    {{-- Error Message --}}
     @if(session('error'))
         <div class="alert alert-error">
             {{ session('error') }}
         </div>
     @endif
 
-    {{-- Validation Errors --}}
     @if ($errors->any())
         <div class="alert alert-error">
             @foreach ($errors->all() as $error)
@@ -32,34 +30,39 @@
         @csrf
 
         <div class="form-group">
-            <label class="form-label">Email</label>
-            <input 
-                type="email" 
-                name="email" 
-                class="form-input"
-                value="{{ old('email') }}"
-                placeholder="you@example.com"
-                required>
+            <label>Email</label>
+            <input type="email" name="email" class="form-input" required>
         </div>
 
         <div class="form-group">
-            <label class="form-label">Password</label>
-            <input 
-                type="password" 
-                name="password" 
-                class="form-input"
-                placeholder="••••••••"
-                required>
+            <label>Password</label>
+            <input type="password" name="password" class="form-input" required>
         </div>
 
         <button type="submit" class="btn">Login</button>
-        
-        <div style="margin-top: 15px;">
-            <a href="{{ route('google.login') }}" class="btn" style="background-color: #db4437;">
-                Continue with Google
-            </a>
-        </div>
     </form>
+
+    <div class="divider">OR</div>
+
+    <div class="google-container">
+        <a href="{{ route('google.login') }}" class="btn btn-google">
+            Continue with Google
+        </a>
+    </div>
+
+    <div class="otp-container">
+        <form method="POST" action="{{ route('otp.send') }}">
+            @csrf
+
+            <div class="form-group">
+                <input type="email" name="email" class="form-input" placeholder="Enter email for OTP" required>
+            </div>
+
+            <button type="submit" class="btn btn-otp">
+                Send OTP
+            </button>
+        </form>
+    </div>
 
     <div class="footer">
         Don’t have an account? 

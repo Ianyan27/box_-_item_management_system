@@ -35,6 +35,18 @@ Route::get('/auth/google/callback', [
     AuthController::class, 'handleGoogleCallback'
 ]);
 
+Route::post('/send-otp', [
+    AuthController::class, 'sendOtp'
+])->name('otp.send');
+
+Route::get('/otp', function () {
+    return view('auth.otp');
+})->name('otp.form');
+
+Route::post('/verify-otp', [
+    AuthController::class, 'verifyOtp'
+])->name('otp.verify');
+
 Route::get('/api/item', [
     ItemManagementController::class, 'getItems'
 ]);
