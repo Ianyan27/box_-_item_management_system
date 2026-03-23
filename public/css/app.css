@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-height: 100vh;
+}
+
+body {
+    height: 100vh;
+}
+
+.content {
+    height: calc(100vh - 70px);
+    margin-top: 0.75rem;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 1em;
+}
+
+.content-container {
+    margin-right: 1rem;
+}
