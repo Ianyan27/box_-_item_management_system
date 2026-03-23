@@ -30,6 +30,6 @@ class ItemManagementController extends Controller
             }
         }
 
-        return view('pages.item.dashboard');
+        return redirect()->back()->with('success', 'Box API Successfully Synced');
     }
 }

@@ -3,11 +3,24 @@
 use App\Http\Controllers\BoxManagementController;
 use App\Http\Controllers\DummyDataController;
 use App\Http\Controllers\ItemManagementController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[
+    UserController::class, 'index'
+])->name('/');
+
+Route::post('/login', [
+    UserController::class, 'login'
+])->name('login');
+
+Route::get('/register', [
+    UserController::class, 'registerNewUser'
+])->name('register');
+
+Route::post('/register', [
+    UserController::class, 'store'
+])->name('register');
 
 Route::get('/item', [
     ItemManagementController::class, 'index'

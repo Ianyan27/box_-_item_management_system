@@ -30,7 +30,7 @@ class BoxManagementController extends Controller
             ]);
         }
 
-        return view('pages.box.dashboard');
+        return redirect()->back()->with('success', 'Box API Successfully Synced');
     }
 
     public function addBox(){
