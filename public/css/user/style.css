@@ -53,13 +53,11 @@ body {
     cursor: pointer;
 }
 
-.btn:hover {
-    background: #2563eb;
-}
-
 .btn-google {
     background: #db4437;
     text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 .btn-otp {
@@ -77,6 +75,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.span-google{
+    margin-right: 1rem;
 }
 
 .otp-container{

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/user/style.css') }}">
+    <script src="https://kit.fontawesome.com/4d2a01d4ef.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
 
@@ -46,6 +47,7 @@
 
     <div class="google-container">
         <a href="{{ route('google.login') }}" class="btn btn-google">
+            <span class="span-google"><i class="fa-brands fa-google"></i></span>
             Continue with Google
         </a>
     </div>

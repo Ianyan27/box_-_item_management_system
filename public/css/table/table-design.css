@@ -1,6 +1,9 @@
 .content-section {
     padding: 20px;
     font-family: Arial, sans-serif;
+    height: calc(100vh - 100px);
+    background-color: #1f293714;
+    border-radius: 12px;
 }
 
 table {

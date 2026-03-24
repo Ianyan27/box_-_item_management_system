@@ -10,7 +10,6 @@
     align-items: center;
 }
 
-/* Modal Box */
 .modal-content {
     background: white;
     padding: 25px;
@@ -18,7 +17,11 @@
     width: 350px;
 }
 
-/* Form */
+.modal-content h3,
+.modal-content p{
+    margin-bottom: 1rem;
+}
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -26,4 +29,17 @@
 .form-group input {
     width: 100%;
     padding: 10px;
+    border-radius: 5px;
+    border: 0.5px solid black;
+}
+
+.modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.modal-actions button{
+    min-width: 75px;
 }

@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Box Dashboard')
+
 @section('content')
 
 <div class="content-section">

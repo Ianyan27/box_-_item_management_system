@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'User Dashboard')
+
 @section('content')
 
 <div class="content-section">
