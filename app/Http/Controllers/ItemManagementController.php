@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Box;
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ItemManagementController extends Controller
 {
@@ -14,9 +15,14 @@ class ItemManagementController extends Controller
         $items = Item::with('box')->get();
         return view('pages.item.dashboard', compact('items', 'boxes'));
     }
-        public function getItems(){
+
+    public function getItems(){
 
         $response = app(DummyDataController::class)->prepareDummyData();
+
+        $items = app(DummyDataController::class)->getItems();
+
+        Log::info($items);
 
         $data = $response->getData(true);
 

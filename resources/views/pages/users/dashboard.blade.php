@@ -4,37 +4,37 @@
 
 <div class="content-section">
     <div style="display:flex; justify-content: space-between; margin-bottom: 15px;">
-        <h2>Items</h2>
-        <button onclick="openModal()" class="btn-add">+ Add Item</button>
+        <h2>Users</h2>
+        <button onclick="openModal()" class="btn-add">+ Add User</button>
     </div>
     <table>
-        <caption>Item Table</caption>
+        <caption>User Table</caption>
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Box</th>
+                <th>Email</th>
                 <th>Date Created</th>
                 <th>Date Updated</th>
                 <th class="th-actions">Actions</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($items as $item)
+            @forelse ($users as $user)
                 <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->box->name }}</td>
-                    <td>{{ $item->created_at }}</td>
-                    <td>{{ $item->updated_at }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->updated_at }}</td>
                     <td>
                         <div class="actions">
                             <div class="edit-btn">
                                 <button 
-                                    onclick="openEditModal({{ $item->id }}, '{{ $item->name }}', '{{ $item->box->name }}')">
+                                    onclick="openEditModal({{ $user->id }}, '{{ $user->name }}')">
                                     Edit
                                 </button>
                             </div>
                             <div class="delete-btn">
-                                <button onclick="openDeleteModal({{ $item->id }})">
+                                <button onclick="openDeleteModal({{ $user->id }})">
                                     Delete
                                 </button>
                             </div>
@@ -50,24 +50,24 @@
     </table>
     <div id="addModal" class="modal">
         <div class="modal-content">
-            <h3>Create New Item</h3>
+            <h3>Create New User</h3>
 
-            <form method="POST" action="{{ route('items.store') }}">
+            <form method="POST" action="{{ route('user.store') }}">
                 @csrf
 
                 <div class="form-group">
-                    <label>List of Box</label>
-                    <select name="box_id" required>
-                        <option value="">Select Box</option>
-                        @foreach ($boxes as $box)
-                        <option value="{{ $box->id }}">{{ $box->name }}</option>
-                        @endforeach
-                    </select>
+                    <label>User Name</label>
+                    <input type="text" name="name" required>
                 </div>
 
                 <div class="form-group">
-                    <label>List Name</label>
-                    <input type="text" name="name" required>
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
                 </div>
 
                 <div class="modal-actions">
@@ -78,27 +78,17 @@
         </div>
     </div>
 
-    <div id="editItemModal" class="modal">
+    <div id="editUserModal" class="modal">
         <div class="modal-content">
-            <h3>Edit Item</h3>
+            <h3>Edit User</h3>
 
             <form method="POST" id="editForm">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <input type="text"  id="editSelectedBox" readonly>
-                    <select name="box_id" required>
-                        <option value="">Select Box</option>
-                        @foreach ($boxes as $box)
-                        <option value="{{ $box->id }}">{{ $box->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Item Name</label>
-                    <input type="text" name="name" id="editItemName" required>
+                    <label>Name</label>
+                    <input type="text" name="name" id="editUserName" required>
                 </div>
 
                 <div class="modal-actions">
@@ -112,9 +102,9 @@
 
     <div id="deleteModal" class="modal">
         <div class="modal-content">
-            <h3>Delete Item</h3>
+            <h3>Delete User</h3>
 
-            <p>Are you sure you want to delete this item?</p>
+            <p>Are you sure you want to delete this user?</p>
 
             <form id="deleteForm" method="POST">
                 @csrf
@@ -133,6 +123,6 @@
     </div>
 </div>
 
-<script src="{{ asset('js/modal/deleteitem.js') }}"></script>
+<script src="{{ asset('js/modal/user.js') }}"></script>
 
 @endsection

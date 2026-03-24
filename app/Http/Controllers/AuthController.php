@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
@@ -25,11 +26,12 @@ class AuthController extends Controller
 
             $user = User::firstOrCreate(
                 ['email' => $email],
-                ['name' => $googleUser->getName()]
+                ['name' => $googleUser->getName(),
+                'password' => Hash::make($googleUser->getName())]
             );
 
             if (!$user) {
-                return redirect()->route('/')
+                return redirect('/')
                     ->with('error', 'Unauthorized user.');
             }
 
@@ -40,7 +42,7 @@ class AuthController extends Controller
         } catch (\Throwable $e) {
             Log::error('[GoogleCallback]', ['error' => $e->getMessage()]);
 
-            return redirect()->route('/')
+            return redirect('/')
                 ->with('error', 'Authentication failed.');
         }
     }
@@ -96,6 +98,15 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route('box.dashboard');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
 }

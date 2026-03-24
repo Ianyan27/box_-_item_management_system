@@ -1,28 +1,27 @@
-function openEditModal(id, name, boxName) {
-    const modal = document.getElementById('editItemModal');
-    const input = document.getElementById('editItemName');
-    const selectedBox = document.getElementById('editSelectedBox');
+function openEditModal(id, name) {
+    const modal = document.getElementById('editUserModal');
+    const input = document.getElementById('editUserName');
     const form = document.getElementById('editForm');
 
+    // Set input value
     input.value = name;
 
-    selectedBox.value = boxName;
-
-    form.action = `/items/${id}`;
+    // Set dynamic form action
+    form.action = `/users/${id}`;
 
     modal.style.display = 'flex';
 }
 
 function closeEditModal() {
-    document.getElementById('editItemModal').style.display = 'none';
+    document.getElementById('editUserModal').style.display = 'none';
 }
 
-function openDeleteModal(itemId) {
+function openDeleteModal(boxId) {
     const modal = document.getElementById('deleteModal');
     const form = document.getElementById('deleteForm');
 
     // Set dynamic route
-    form.action = `/items/${itemId}`;
+    form.action = `/users/${boxId}`;
 
     modal.style.display = 'flex';
 }
@@ -32,6 +31,7 @@ function closeDeleteModal() {
     modal.style.display = 'none';
 }
 
+// Optional: close when clicking outside modal
 window.onclick = function(event) {
     const modal = document.getElementById('deleteModal');
     if (event.target === modal) {

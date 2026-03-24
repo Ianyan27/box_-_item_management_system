@@ -18,6 +18,13 @@
             </a>
         </li>
 
+        <li style="margin-bottom: 15px;">
+            <a href="{{ route('user.dashboard') }}" 
+                style="color: white; text-decoration: none;">
+                <i class="fa-solid fa-list"></i>User
+            </a>
+        </li>
+
     </ul>
 
 </div>

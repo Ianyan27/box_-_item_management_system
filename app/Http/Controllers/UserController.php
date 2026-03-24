@@ -61,4 +61,50 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    public function getUsers(){
+        
+        $users = User::all();
+
+        return view('pages.users.dashboard', compact('users'));
+    }
+
+    public function addUser(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        Log::info($request->password);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return back()->with('success', 'User created successfully!');
+    }
+
+    public function updateUser(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'name' => $request->name
+        ]);
+
+        return back()->with('success', 'User updated successfully!');
+    }
+
+    public function deleteUser($id){
+        $user = User::findOrFail($id);
+        $user->delete();
+        return back()->with('success', 'User Deleted Successfully!');
+    }
 }

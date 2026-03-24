@@ -48,4 +48,20 @@ class DummyDataController extends Controller
 
         return $boxName;
     }
+
+    public function getItems(){
+        $itemName = [];
+
+        $response = $this->prepareDummyData();
+
+        $data = $response->getData(true);
+
+        foreach($data as $box){
+            foreach($box['items'] as $items){
+                $itemName[] = $items['name'];
+            }
+        }
+
+        return $itemName;
+    }
 }
